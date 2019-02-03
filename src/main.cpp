@@ -13,19 +13,17 @@ using namespace std;
 
 namespace {
 
-    bool on_same_diagonal(const Square& sq1, const Square& sq2, const Square& sq3)  // are_diagonally_aligned
+    // Alternative name for function: diagonally_aligned
+    bool on_same_diagonal(const Square& sq1, const Square& sq2, const Square& sq3)
     {
-        /*// Testing
-        cout << "df21 = " << sq2.file - sq1.file << "  ";
-        cout << "dr21 = " << sq2.rank - sq1.rank << "\n";
-        cout << "df31 = " << sq3.file - sq1.file << "  ";
-        cout << "dr31 = " << sq3.rank - sq1.rank << "\n";*/
+        const int df21 = sq2.file - sq1.file;
+        const int dr21 = sq2.rank - sq1.rank;
+        const int df31 = sq3.file - sq1.file;
+        const int dr31 = sq3.rank - sq1.rank;
 
-        bool res =  ((sq2.file - sq1.file) == (sq2.rank - sq1.rank))
-                 && ((sq3.file - sq1.file) == (sq3.rank - sq1.rank));
+        bool res =  (df21 ==  dr21) && (df31 ==  dr31);
         if (!res)
-            res  =  ((sq2.file - sq1.file) == -(sq2.rank - sq1.rank))
-                 && ((sq3.file - sq1.file) == -(sq3.rank - sq1.rank));
+            res  =  (df21 == -dr21) && (df31 == -dr31);
 
         return res;
     }
